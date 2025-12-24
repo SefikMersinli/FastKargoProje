@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold text-dark">📊 Yönetim Paneli Dashboard</h1>
+    <span class="text-muted">Hoş geldiniz, Admin</span>
+</div>
+<div class="row mb-5">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-start border-4 border-warning h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted fw-bold">Toplam Kargo Sayısı</h5>
+                <h1 class="display-4 fw-bolder">0</h1>
+                <small class="text-secondary">Sistemde kayıt bulunamadı</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-start border-4 border-success h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted fw-bold">Teslim Edilen</h5>
+                <h1 class="display-4 fw-bolder">0</h1>
+                <small class="text-success">Teslim edilmiş kargo yok</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-start border-4 border-danger h-100">
+            <div class="card-body">
+                <h5 class="card-title text-muted fw-bold">Aktif Destek Talebi</h5>
+                <h1 class="display-4 fw-bolder">0</h1>
+                <small class="text-danger">Herhangi bir talep bulunamadı</small>
+
+                <div class="progress mt-2" role="progressbar" style="height:5px;">
+                    <div class="progress-bar bg-danger" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="mb-3 fw-bold text-primary">📦 Son Eklenen Kargolar</h3>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Takip No</th>
+                            <th>Alıcı</th>
+                            <th>Durum</th>
+                            <th>Eylem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">
+                                Henüz kargo kaydı yok.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer text-end">
+                <button class="btn btn-sm btn-link" disabled>Tüm Kargoları Gör →</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h3 class="mb-3 fw-bold text-danger">🎫 Açık Destek Talepleri</h3>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Konu</th>
+                            <th>E-posta</th>
+                            <th>Durum</th>
+                            <th>Eylem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-3">
+                                Açık destek talebi yok.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer text-end">
+                <button class="btn btn-sm btn-link" disabled>Tüm Ticketları Gör →</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

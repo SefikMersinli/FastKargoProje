@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Kargo Detayı - {{ kargo.takip_no }}{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'cargo_list' %}" class="btn btn-link px-0 mb-3 text-primary fw-bold">
+    ← Kargo Listesine Dön
+</a>
+
+<div class="card shadow-lg p-4 mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="fw-bolder text-primary mb-0">Takip No: {{ kargo.takip_no }}</h2>
+        {% if kargo.durum == "TESLIM" %}
+            <span class="badge bg-success fs-6 p-2">TESLİM EDİLDİ</span>
+        {% elif kargo.durum == "DAGITIMDA" %}
+            <span class="badge bg-primary fs-6 p-2">DAĞITIMDA</span>
+        {% else %}
+            <span class="badge bg-warning text-dark fs-6 p-2">YOLDA / İŞLENİYOR</span>
+        {% endif %}
+    </div>
+    <button onclick="window.print()" class="btn btn-outline-dark btn-sm mt-3">
+    <i class="fas fa-print"></i> Kargo Barkodunu Yazdır
+</button>
+    <hr class="mt-3 mb-4">
+
+    <h5 class="fw-bold text-secondary mb-3">Kargo İlerlemesi</h5>
+    
+    {% if kargo.durum == "TESLIM" %}
+        <div class="progress mb-4" role="progressbar" style="height: 25px;">
+            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 100%">
+                %100 (Teslim Edildi)
+            </div>
+        </div>
+    {% elif kargo.durum == "DAGITIMDA" %}
+        <div class="progress mb-4" role="progressbar" style="height: 25px;">
+            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width: 75%">
+                %75 (Dağıtımda)
+            </div>
+        </div>
+    {% else %}
+        <div class="progress mb-4" role="progressbar" style="height: 25px;">
+            <div class="progress-bar bg-warning text-dark progress-bar-striped progress-bar-animated" style="width: 40%">
+                %40 (Yolda)
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        <div class="col-md-6 border-end">
+            <h5 class="fw-bold text-dark mb-3">Alıcı ve Adres Bilgileri</h5>
+            <p class="mb-1"><strong>Alıcı:</strong> {{ kargo.alici }}</p>
+            <p class="mb-1"><strong>Adres:</strong> {{ kargo.adres }}</p>
+            <p class="mb-1"><strong>Oluşturma:</strong> {{ kargo.olusturma|date:"d.m.Y H:i" }}</p>
+        </div>
+        <div class="col-md-6 ps-md-4">
+            <h5 class="fw-bold text-dark mb-3">Finansal ve Teknik Detaylar</h5>
+            <p class="mb-1"><strong>Ücret:</strong> <span class="text-success fw-bold">{{ kargo.fiyat }} ₺</span></p>
+            <p class="mb-1"><strong>Gönderi Türü:</strong> {{ kargo.gonderi_turu }}</p>
+            <p class="mb-1"><strong>Güncelleme:</strong> {{ kargo.guncelleme|date:"d.m.Y H:i" }}</p>
+        </div>
+    </div>
+</div>
+
+<h3 class="fw-bold text-secondary mt-5 mb-4">Gönderi Takip Geçmişi</h3>
+
+{# kargo.gecmis.all kullanımı veritabanındaki tüm geçmiş hareketlerini çeker #}
+{% if kargo.gecmis.all %}
+<div class="timeline">
+    {% for adim in kargo.gecmis.all %}
+    <div class="timeline-item">
+        <div class="timeline-point 
+            {% if forloop.first %}bg-primary{% elif adim.konum == 'Teslim Edildi' %}bg-success{% else %}bg-secondary{% endif %}">
+        </div>
+        <div class="timeline-content card shadow-sm p-3 mb-3">
+            <div class="fw-bold text-dark">{{ adim.konum }}</div>
+            <small class="text-muted d-block">{{ adim.detay }}</small>
+            <small class="text-end fw-bold mt-2 d-block text-primary">{{ adim.tarih|date:"d.m.Y H:i" }}</small>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p class="alert alert-warning text-center shadow-sm">Takip geçmişi henüz oluşmamıştır.</p>
+{% endif %}
+
+<style>
+    .timeline {
+        border-left: 3px solid #dee2e6;
+        position: relative;
+        padding-left: 30px;
+        margin-left: 15px;
+    }
+    .timeline-item {
+        position: relative;
+        margin-bottom: 25px;
+    }
+    .timeline-point {
+        position: absolute;
+        left: -39px; 
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 3px solid white; 
+        box-shadow: 0 0 0 2px #dee2e6;
+        z-index: 10;
+    }
+    .timeline-content {
+        border-radius: 12px;
+        border-left: 4px solid #ff9f1c; /* Fast Kargo Turuncusu */
+    }
+</style>
+
+{% endblock %}

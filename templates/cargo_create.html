@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Yeni Kargo Oluştur{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="col-lg-8">
+
+        <h1 class="fw-bold text-center mb-4">Yeni Kargo Oluştur</h1>
+
+        <div class="card card-pro shadow-sm">
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <h5 class="fw-bold mb-3 text-primary">Gönderici Bilgileri</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Gönderen Adı</label>
+                            <input type="text" name="gonderen_ad" class="form-control" placeholder="Ad Soyad" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Gönderen Telefon</label>
+                            <input type="text" name="gonderen_tel" class="form-control" placeholder="05xx xxx xx xx" required>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Gönderen Adresi</label>
+                            <textarea name="gonderen_adres" class="form-control" rows="2" placeholder="Adres bilgisi..." required></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h5 class="fw-bold mb-3 text-primary">Alıcı Bilgileri</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Alıcı Adı</label>
+                            <input type="text" name="alici" class="form-control" placeholder="Ad Soyad" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Alıcı Telefon</label>
+                            <input type="text" name="alici_tel" class="form-control" placeholder="05xx xxx xx xx" required>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Alıcı Adresi</label>
+                            <textarea name="alici_adres" class="form-control" rows="3" placeholder="Adres bilgisi..." required></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h5 class="fw-bold mb-3 text-primary">Kargo Bilgileri</h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Gönderi Türü</label>
+                            <select name="gonderi_turu" class="form-select" required>
+                                <option value="">Seçiniz...</option>
+                                <option value="Paket">Paket</option>
+                                <option value="Zarf">Zarf</option>
+                                <option value="Koli">Koli</option>
+                                <option value="Kırılabilir Ürün">Kırılabilir Ürün</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Ağırlık (kg)</label>
+                            <input type="number" name="agirlik" class="form-control" min="0" step="0.1" placeholder="Örn: 2.5" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Ödeme Türü</label>
+                            <select name="odeme_turu" class="form-select" required>
+                                <option value="">Seçiniz...</option>
+                                <option value="Gönderen Ödemeli">Gönderen Ödemeli</option>
+                                <option value="Alıcı Ödemeli">Alıcı Ödemeli</option>
+                                <option value="Kapıda Ödeme">Kapıda Ödeme</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Kargo Açıklaması</label>
+                            <textarea name="aciklama" class="form-control" rows="2" placeholder="İsteğe bağlı kargo açıklaması..."></textarea>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kargo Ücreti (₺)</label>
+                            <div class="form-control bg-light text-muted">
+                                Ücret: Sistem tarafından otomatik hesaplanır.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Tahmini Teslim Süresi</label>
+                            <div class="form-control bg-light text-muted">
+                                1 – 2 İş Günü
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100 fw-bold mt-3 shadow-sm">
+                        Kargoyu Oluştur ve Sisteme Kaydet
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

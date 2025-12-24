@@ -1,0 +1,569 @@
+{% extends "base_kurye.html" %}
+{% block title %}Kurye Paneli – Dashboard{% endblock %}
+
+{% block content %}
+
+
+<section id="dashboard">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Ana Dashboard</h2>
+        <div class="chip">
+            <i class="bi bi-calendar-event"></i>
+            <span>Bugün: 04.12.2025</span>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Aktif Sipariş</span>
+                        <i class="bi bi-lightning-charge text-warning"></i>
+                    </div>
+                    <div class="stat-number">5</div>
+                    <small class="text-secondary">Şu anda teslimat aşamasında</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Tamamlanan</span>
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="stat-number">128</div>
+                    <small class="text-secondary">Toplam tamamlanan sipariş</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Bekleyen Görevler</span>
+                        <i class="bi bi-hourglass-split text-info"></i>
+                    </div>
+                    <div class="stat-number">3</div>
+                    <small class="text-secondary">Atanmayı bekleyen siparişler</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Kazanç Özeti</span>
+                        <i class="bi bi-graph-up-arrow text-warning"></i>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <small class="text-secondary">Günlük</small>
+                            <div class="fw-semibold">₺450</div>
+                        </div>
+                        <div>
+                            <small class="text-secondary">Haftalık</small>
+                            <div class="fw-semibold">₺3.100</div>
+                        </div>
+                        <div>
+                            <small class="text-secondary">Aylık</small>
+                            <div class="fw-semibold">₺11.800</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section id="map">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="section-title mb-0">Harita Ekranı</h3>
+        <span class="chip">
+            <i class="bi bi-pin-map"></i> Canlı konum
+        </span>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-8">
+            <div class="map-placeholder">
+                Harita entegrasyonu burada görünecek (Google Maps, Leaflet, vb.)
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Kurye Konumu</span>
+                    <span class="badge bg-success">Çevrimiçi</span>
+                </div>
+                <div class="card-body small">
+                    <p class="mb-1"><strong>Adres:</strong> Bağcılar / İstanbul</p>
+                    <p class="mb-1"><strong>Koordinat:</strong> 41.034, 28.856</p>
+                    <p class="mb-0"><strong>Durum:</strong> Teslimata hazır</p>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    Teslimat Bilgisi
+                </div>
+                <div class="card-body small">
+                    <p class="mb-1"><strong>Teslim Adresi:</strong> Şişli / İstanbul</p>
+                    <p class="mb-1"><strong>Tahmini Süre:</strong> 18 dk</p>
+                    <p class="mb-2"><strong>Mesafe:</strong> 7.4 km</p>
+                    <span class="badge bg-secondary mb-2">En hızlı rota aktif</span>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-accent w-100">
+                            <i class="bi bi-cursor-fill me-1"></i> Rota Başlat
+                        </button>
+                        <button class="btn btn-sm btn-outline-light w-100">
+                            <i class="bi bi-arrows-fullscreen me-1"></i> Haritayı Büyüt
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Trafik Bilgisi
+                </div>
+                <div class="card-body small">
+                    <p class="mb-1"><strong>Yoğunluk:</strong> Orta</p>
+                    <p class="mb-1"><strong>Tahmini Gecikme:</strong> +5 dk</p>
+                    <p class="mb-0 text-secondary">Gerçek zamanlı trafik entegrasyonu burada gösterilebilir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section id="orders">
+    <h3 class="section-title">📦 Siparişler</h3>
+
+    
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Aktif Siparişler</span>
+            <span class="badge badge-accent">3 aktif</span>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-dark-custom table-hover mb-0 align-middle">
+                    <thead>
+                    <tr>
+                        <th>Sipariş ID</th>
+                        <th>Alıcı Adı</th>
+                        <th>Alım Noktası</th>
+                        <th>Teslimat Noktası</th>
+                        <th>Tahmini Süre</th>
+                        <th class="text-end">İşlemler</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>#10234</td>
+                        <td>Ahmet Yılmaz</td>
+                        <td>Fatih / İstanbul</td>
+                        <td>Beşiktaş / İstanbul</td>
+                        <td>15 dk</td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-light me-1">
+                                Yola Çık
+                            </button>
+                            <button class="btn btn-sm btn-accent">
+                                Teslim Ettim
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10235</td>
+                        <td>Elif Demir</td>
+                        <td>Kadıköy / İstanbul</td>
+                        <td>Üsküdar / İstanbul</td>
+                        <td>22 dk</td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-light me-1">
+                                Yola Çık
+                            </button>
+                            <button class="btn btn-sm btn-accent">
+                                Teslim Ettim
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10236</td>
+                        <td>Mehmet Kaya</td>
+                        <td>Şişli / İstanbul</td>
+                        <td>Maslak / İstanbul</td>
+                        <td>12 dk</td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-light me-1">
+                                Yola Çık
+                            </button>
+                            <button class="btn btn-sm btn-accent">
+                                Teslim Ettim
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Geçmiş Siparişler</span>
+            <select class="form-select form-select-sm w-auto">
+                <option>Son 7 gün</option>
+                <option>Son 30 gün</option>
+                <option>Bu yıl</option>
+            </select>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-dark-custom table-striped mb-0 align-middle">
+                    <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Ücret</th>
+                        <th>Mesafe</th>
+                        <th>Detaylar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>03.12.2025 18:42</td>
+                        <td>₺85</td>
+                        <td>9.2 km</td>
+                        <td><button class="btn btn-sm btn-outline-light">Detay</button></td>
+                    </tr>
+                    <tr>
+                        <td>03.12.2025 15:10</td>
+                        <td>₺60</td>
+                        <td>6.5 km</td>
+                        <td><button class="btn btn-sm btn-outline-light">Detay</button></td>
+                    </tr>
+                    <tr>
+                        <td>02.12.2025 20:05</td>
+                        <td>₺120</td>
+                        <td>12.3 km</td>
+                        <td><button class="btn btn-sm btn-outline-light">Detay</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section id="profile">
+    <h3 class="section-title">👤 Profil</h3>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-person-circle" style="font-size: 4rem;"></i>
+                    </div>
+                    <h5 class="mb-1">Yusuf Akdağ</h5>
+                    <p class="text-secondary mb-2">Kurye • İstanbul</p>
+                    <span class="badge badge-accent mb-3">Moto Kurye</span>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-light btn-sm">
+                            Profil Fotoğrafı Değiştir
+                        </button>
+                        <button class="btn btn-outline-light btn-sm">
+                            Belgeleri Görüntüle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Profil Bilgileri
+                </div>
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">İsim</label>
+                            <input type="text" class="form-control" value="Yusuf">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Soyisim</label>
+                            <input type="text" class="form-control" value="Akdağ">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Araç Türü</label>
+                            <select class="form-select">
+                                <option selected>Motosiklet</option>
+                                <option>Bisiklet</option>
+                                <option>Araba</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Çalışma Saatleri</label>
+                            <input type="text" class="form-control" placeholder="Ör: 10:00 - 22:00">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Not / Açıklama</label>
+                            <textarea class="form-control" rows="2"
+                                      placeholder="Teslimat tercihlerin, özel durumların vb."></textarea>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-accent">
+                                Değişiklikleri Kaydet
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Belgeler
+                </div>
+                <div class="card-body small">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Ehliyet</span>
+                        <span class="badge bg-success">Yüklü</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Ruhsat</span>
+                        <span class="badge bg-success">Yüklü</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span>Sigorta</span>
+                        <span class="badge bg-secondary">Eksik</span>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm mt-2">
+                        Belge Yükle / Güncelle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section id="earnings">
+    <h3 class="section-title">💰 Kazanç</h3>
+
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h6>Günlük Kazanç</h6>
+                    <div class="stat-number mb-1">₺450</div>
+                    <small class="text-secondary">Dün: ₺390</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h6>Haftalık Kazanç</h6>
+                    <div class="stat-number mb-1">₺3.100</div>
+                    <small class="text-secondary">Hafta hedefi: ₺4.000</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h6>Aylık Kazanç</h6>
+                    <div class="stat-number mb-1">₺11.800</div>
+                    <small class="text-secondary">Geçen ay: ₺10.400</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    Bonuslar & Primler
+                </div>
+                <div class="card-body small">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Haftalık hedef primi</span>
+                            <span class="text-success">+₺150</span>
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Yoğun saat bonusu</span>
+                            <span class="text-success">+₺80</span>
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>İptalsiz teslimat serisi (20)</span>
+                            <span class="text-success">+₺200</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Ödeme Geçmişi</span>
+                    <span class="badge bg-secondary">Son ödemeler</span>
+                </div>
+                <div class="card-body small">
+                    <div class="table-responsive">
+                        <table class="table table-dark-custom table-sm mb-0">
+                            <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>01.12.2025</td>
+                                <td>₺2.800</td>
+                                <td><span class="badge bg-success">Ödendi</span></td>
+                            </tr>
+                            <tr>
+                                <td>24.11.2025</td>
+                                <td>₺2.600</td>
+                                <td><span class="badge bg-success">Ödendi</span></td>
+                            </tr>
+                            <tr>
+                                <td>17.11.2025</td>
+                                <td>₺2.400</td>
+                                <td><span class="badge bg-success">Ödendi</span></td>
+                            </tr>
+                            <tr>
+                                <td>10.11.2025</td>
+                                <td>₺2.150</td>
+                                <td><span class="badge bg-success">Ödendi</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm mt-2">
+                        Tüm ödeme geçmişini gör
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<section id="settings">
+    <h3 class="section-title">⚙️ Ayarlar</h3>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    Bildirim Ayarları
+                </div>
+                <div class="card-body small">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="notifNewOrder" checked>
+                        <label class="form-check-label" for="notifNewOrder">
+                            Yeni sipariş bildirimi
+                        </label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="notifPayment" checked>
+                        <label class="form-check-label" for="notifPayment">
+                            Ödeme alındığında bildir
+                        </label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="notifPromo">
+                        <label class="form-check-label" for="notifPromo">
+                            Kampanya / duyuru bildirimi
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    Dil & Tema
+                </div>
+                <div class="card-body small">
+                    <div class="mb-3">
+                        <label class="form-label">Dil Seçimi</label>
+                        <select class="form-select">
+                            <option selected>Türkçe</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Tema</label>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-accent">
+                            Karanlık Tema
+                        </button>
+                        <button class="btn btn-sm btn-outline-light">
+                            Aydınlık Tema
+                        </button>
+                    </div>
+                    <small class="text-secondary d-block mt-2">
+                        Tema değişimi, Django tarafında kullanıcı ayarlarına kaydedilebilir.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    Oturum
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="small">
+                        <p class="mb-1"><strong>Son giriş:</strong> 04.12.2025 16:10</p>
+                        <p class="mb-1"><strong>Konum:</strong> İstanbul, Türkiye</p>
+                        <p class="mb-0 text-secondary">
+                            Güvenlik için belirli aralıklarla şifreni güncellemeni öneririz.
+                        </p>
+                    </div>
+                    <div class="mt-3 d-grid gap-2">
+                        <button class="btn btn-outline-light btn-sm">
+                            Şifreyi Değiştir
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            Çıkış Yap
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

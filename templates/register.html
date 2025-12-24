@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Üye Ol - Fast Kargo{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-5 mx-auto">
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h3 class="text-center mb-3">Üye Ol</h3>
+
+                    {% if error %}
+            <div class="alert alert-danger" style="border: 2px solid red; font-weight: bold;">
+                {{ error }}
+            </div>
+        {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <label class="form-label">Kullanıcı Adı</label>
+                <input type="text" name="username" class="form-control mb-3" placeholder="kullanici123">
+
+                <label class="form-label">E-posta</label>
+                <input type="email" name="email" class="form-control mb-3" placeholder="example@mail.com">
+
+                <label class="form-label">Şifre</label>
+                <input type="password" name="password1" class="form-control mb-3">
+
+                <label class="form-label">Şifre Tekrarı</label>
+                <input type="password" name="password2" class="form-control mb-3">
+
+                <button class="btn btn-warning w-100 fw-bold">Kayıt Ol</button>
+            </form>
+
+            <p class="text-center mt-3">
+                Hesabın var mı? <a href="{% url 'login' %}">Giriş Yap</a>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

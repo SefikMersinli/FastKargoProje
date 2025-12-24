@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Destek Talebi Oluştur{% endblock %}
+
+{% block content %}
+
+<div class="col-md-7 mx-auto">
+    <h1 class="fw-bold mb-4 text-primary">Destek Talebi Oluştur</h1>
+
+    <div class="card shadow-sm p-4">
+        
+        <form method="post">
+            {% csrf_token %}
+            {% load static %}
+            
+            <h5 class="fw-bold mb-3">İletişim Bilgileri</h5>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Adınız Soyadınız</label>
+                    <input type="text" name="isim" class="form-control" placeholder="Ad Soyad" value="{{ initial.isim }}" required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">E-posta Adresi</label>
+                    <input type="email" name="email" class="form-control" placeholder="mail@ornek.com" value="{{ initial.email }}" required>
+                </div>
+            </div>
+
+            <hr>
+
+            <h5 class="fw-bold mb-3">Talep Detayları</h5>
+
+            <div class="mb-3">
+                <label class="form-label">Talep Konusu</label>
+                <select name="konu" class="form-select" required>
+                    <option value="">Seçiniz...</option>
+                    <option value="GECIKME" {% if initial.konu == 'GECIKME' %}selected{% endif %}>Teslimat Gecikmesi</option>
+                    <option value="HASAR" {% if initial.konu == 'HASAR' %}selected{% endif %}>Hasarlı Gönderi</option>
+                    <option value="FIYAT" {% if initial.konu == 'FIYAT' %}selected{% endif %}>Fiyatlandırma Sorunu</option>
+                    <option value="DIGER" {% if initial.konu == 'DIGER' %}selected{% endif %}>Diğer</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mesajınız</label>
+                <textarea name="mesaj" rows="5" class="form-control" placeholder="Detaylı açıklamanızı buraya yazınız..." required>{{ initial.mesaj }}</textarea>
+            </div>
+
+            <button class="btn btn-primary w-100 fw-bold mt-3">Talebi Gönder</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

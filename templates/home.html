@@ -1,0 +1,57 @@
+    {% extends "base.html" %}
+
+    {% block title %}Fast Kargo - Ana Sayfa{% endblock %}
+
+    {% block content %}
+    <div class="row mb-5">
+        <div class="col-md-7 d-flex flex-column justify-content-center">
+            <h1 class="fw-bold display-5">Türkiye’nin En Hızlı Kargo Servisi</h1>
+            <a href="{% url 'cargo_create' %}" class="btn ...">Gönderi Oluştur</a>
+        </div>
+
+        <div class="col-md-5">
+                <div class="kargo-takip-box">
+        <h3>📦 Kargo Takip</h3>
+        <p>Takip numaranızı girerek gönderinizi takip edin.</p>
+        
+        <form onsubmit="event.preventDefault(); var no = document.getElementById('takip_input').value.trim(); if(no) { window.location.href='/kargolar/' + no + '/'; } else { alert('Lütfen bir takip numarası girin!'); }">
+            <input type="text" id="takip_input" placeholder="Örn: FK12345" required>
+            <button type="submit" class="btn-takip">Takip Et</button>
+        </form>
+    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-pro mb-4 p-4">
+        <h3 class="fw-bold mb-3">🆘 Destek Talebi Oluştur</h3>
+        <p class="text-muted fs-6">
+            Kargonuzla ilgili bir probleminiz mi var? Destek ekibimiz 7/24 size yardımcı olur.
+        </p>
+            <a href="{% url 'ticket_create' %}" class="btn ...">Destek Talebi Aç</a>
+        </a>
+    </div>
+
+    <div class="card-pro mb-4 p-4" style="border-left: 5px solid #000; background: #f8f9fa;">
+        <h3 class="fw-bold mb-3">🚚 Kurye İşlemleri</h3>
+        <p class="text-muted fs-6">
+            Kurye personeli iseniz, teslimatları yönetmek ve rotanızı görmek için sisteme buradan giriş yapın.
+        </p>
+        <a href="{% url 'kurye_dashboard' %}" class="btn btn-dark fw-bold btn-lg mt-2">
+            Kurye Paneline Git
+        </a>
+    </div>
+
+    <script>
+        function takipEt() {
+            var takipNo = document.getElementById('takip_no_input').value.trim();
+            if (takipNo) {
+            
+            
+                window.location.href = "/kargolar/" + takipNo + "/";
+            } else {
+                alert("Lütfen bir takip numarası giriniz.");
+            }
+        }
+    </script>
+    {% endblock %}

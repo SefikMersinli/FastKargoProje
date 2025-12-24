@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Kargo Listesi{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold text-primary">Kargo Yönetim Paneli</h1>
+    <a href="{% url 'cargo_create' %}" class="btn btn-warning fw-bold shadow-sm">
+        <i class="fas fa-plus me-1"></i> Yeni Kargo Oluştur
+    </a>
+</div>
+
+<div class="card shadow-lg mb-4 p-3 bg-light">
+    <h5 class="fw-bold mb-3 text-secondary">Hızlı Arama ve Filtreleme</h5>
+    
+    <form class="row g-2 align-items-center" method="GET">
+        <div class="col-md-5">
+            <input type="text" name="q" class="form-control" placeholder="Takip No veya Alıcı Adı ile ara..." value="{{ request.GET.q }}">
+        </div>
+        
+        <div class="col-md-3">
+            <select name="durum" class="form-select">
+                <option value="">Durum: Tümü</option>
+                <option value="TESLIM" {% if request.GET.durum == 'TESLIM' %}selected{% endif %}>Teslim Edildi</option>
+                <option value="DAGITIMDA" {% if request.GET.durum == 'DAGITIMDA' %}selected{% endif %}>Dağıtımda</option>
+                <option value="YOLDA" {% if request.GET.durum == 'YOLDA' %}selected{% endif %}>Yolda</option>
+            </select>
+        </div>
+        
+        <div class="col-md-3">
+            <input type="date" name="tarih" class="form-control" value="{{ request.GET.tarih }}">
+        </div>
+
+        <div class="col-md-1">
+            <button class="btn btn-primary w-100" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        {% if kargolar %}
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Takip No</th>
+                    <th>Alıcı</th>
+                    <th>Adres</th>
+                    <th>Durum</th>
+                    <th>Ücret</th>
+                    <th>Oluşturma</th>
+                    <th>Eylem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k in kargolar %}
+                <tr>
+                    <td>{{ k.takip_no }}</td>
+                    <td>{{ k.alici }}</td>
+                    <td>{{ k.adres|truncatechars:30 }}</td>
+                    <td>
+                        {% if k.durum == "TESLIM" %}
+                        <span class="badge bg-success p-2">Teslim</span>
+                        {% elif k.durum == "DAGITIMDA" %}
+                        <span class="badge bg-primary p-2">Dağıtımda</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark p-2">Yolda</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ k.fiyat }} ₺</td>
+                    <td>{{ k.olusturma|date:"d.m.Y H:i" }}</td>
+                    <td>
+                        <a href="{% url 'cargo_info' k.takip_no %}" class="btn btn-sm btn-dark">Detay</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="alert alert-info text-center">Aradığınız kriterlere uygun kargo bulunamadı.</p>
+        {% endif %}
+
+    </div>
+</div>
+{% if kargolar %}
+    {% else %}
+    <div class="text-center py-5">
+        <h4 class="text-muted">Henüz kayıtlı kargonuz bulunmuyor.</h4>
+        <a href="{% url 'cargo_create' %}" class="btn btn-primary mt-3">Hemen İlk Kargonuzu Oluşturun</a>
+    </div>
+{% endif %}
+{% endblock %}
